@@ -1,0 +1,194 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Hotel Charges</title>
+
+    <meta name="viewport"
+
+          content="width=device-width, initial-scale=1">
+
+  </head>
+
+<style>
+body {
+background: linear-gradient(to right, silver 0%, gold 100%);
+}
+
+.tableclass {
+border: solid black 5px;
+}
+
+img {
+border-radius: 50px;
+}
+
+a:link, a:visited {
+font-weight: bold;
+text-decoration: none;
+color: black;
+}
+
+</style>
+
+  <body>
+
+<table class="tableclass">
+<tr><td>
+<form name="theform">
+<table>
+<tr><td>
+<h1>Hotel Charges</h1>
+<p><strong>Input number of nights, nighly charges, room service charge, telephone charge and miscellaneous charges<br> to compute room charges, additional charges, subtotal, tax and total charges for your stay at the hotel.</strong></p>
+</td>
+<td></td>
+
+
+
+<tr>
+<td rowspan="15"><img src="hotel.jpg" width: 600px;
+height: auto; alt="picture of a hotel"></td>
+
+<td style="float: right"><strong>Night Charges:</strong></td>
+<td></td>
+</tr>
+
+<td style="float: right">Nights:</td>
+<td><input name="nightsFmInput" size="10"></td>
+</tr>
+
+<tr>
+<td style="float: right">Nightly Charge:</td>
+<td><input name="nightlyChargeFmInput" size="10"><hr></td>
+</tr>
+
+<tr>
+<td style="float: right"><strong>Additional Charges:</strong></td>
+<td></td>
+</tr>
+
+<tr>
+<td style="float: right">Room Service:</td>
+<td><input name="roomServiceFmInput" size="10"></td>
+</tr>
+
+<tr>
+<td style="float: right">Telephone:</td>
+<td><input name="telephoneFmInput" size="10"></td>
+</tr>
+
+<tr>
+<td style="float: right">Miscellaneous:</td>
+<td><input name="miscellaneousFmInput" size="10"><hr></td>
+</tr>
+
+<tr>
+<td><strong>Total Charges:</strong></td>
+</tr>
+
+<tr>
+<td style="float: right">Room Charges:</td>
+<td style="background-color: white; color: black" id="roomChargesFmOutput"></td>
+</tr>
+
+<tr>
+<td style="float: right">Additional Charges:</td>
+<td style="background-color: white; color: black" id="additionalChargesFmOutput"></td>
+</tr>
+
+<tr>
+<td style="float: right">Subtotal:</td>
+<td style="background-color: white; color: black" id="subtotalFmOutput"></td>
+</tr>
+
+<tr>
+<td style="float: right">Tax (8.25%):</td>
+<td style="background-color: white; color: black" id="taxFmOutput"></td>
+</tr>
+
+<tr>
+<td style="float: right">Total Charges:</td>
+<td style="background-color: white; color: black" id="totalChargesFmOutput"></td>
+</tr>
+<tr>
+<td colspan="2"><hr>
+	<input type="button" name="calc" value="Calculate" onclick="calculate();">
+	<input type="button" name="clear" value="Clear" onclick="clearinfo();">
+</tr>
+
+</table>
+</form>
+</td><td rowspan="16">
+<img src="lamp.jpg" height=500></td></tr></table>
+
+<script>
+document.theform.nightsFmInput.focus();
+
+function calculate(){
+const tax_c = 0.0825;
+
+
+var nights;
+var nightlyCharge;
+var roomService;
+var telephone;
+var miscellaneous;
+
+var roomCharges;
+var additionalCharges;
+var subtotal;
+var tax;
+var totalCharges;
+
+
+nights = parseFloat(document.theform.nightsFmInput.value);
+nightlyCharge = parseFloat(document.theform.nightlyChargeFmInput.value);
+roomService = parseFloat(document.theform.roomServiceFmInput.value);
+telephone = parseFloat(document.theform.telephoneFmInput.value);
+miscellaneous = parseFloat(document.theform.miscellaneousFmInput.value);
+
+
+roomCharges = parseFloat(nights * nightlyCharge);
+additionalCharges = parseFloat(roomService + telephone + miscellaneous);
+subtotal = parseFloat(roomCharges + additionalCharges);
+tax = parseFloat((roomCharges + additionalCharges) * tax_c);
+totalCharges = parseFloat(tax + subtotal);
+
+
+
+document.getElementById("roomChargesFmOutput").innerHTML = "$ " + roomCharges.toFixed(2);
+document.getElementById("additionalChargesFmOutput").innerHTML = "$ " + additionalCharges.toFixed(2);
+document.getElementById("subtotalFmOutput").innerHTML = "$ " + subtotal.toFixed(2);
+document.getElementById("taxFmOutput").innerHTML = "$ " + tax.toFixed(2);
+document.getElementById("totalChargesFmOutput").innerHTML = "$ " + totalCharges.toFixed(2);
+}
+
+function clearinfo() {
+document.theform.nightsFmInput.value = " ";
+document.theform.nightlyChargeFmInput.value = " ";
+document.theform.roomServiceFmInput.value = " ";
+document.theform.telephoneFmInput.value = " ";
+document.theform.miscellaneousFmInput.value = " ";
+
+
+document.getElementById("roomChargesFmOutput").innerHTML = " ";
+document.getElementById("additionalChargesFmOutput").innerHTML = " ";
+document.getElementById("subtotalFmOutput").innerHTML = " ";
+document.getElementById("taxFmOutput").innerHTML = " ";
+document.getElementById("totalChargesFmOutput").innerHTML = " ";
+
+document.theform.nightsFmInput.focus();
+}
+
+
+</script>
+
+<br> <a href="http://csnet.southtexascollege.edu/localuser/spruned5/index.html">Go Back to HomePage</a>
+	<p><strong>Salvador Pruneda</strong></p> 
+  </body>
+
+</html>
